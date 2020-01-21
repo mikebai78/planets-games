@@ -1,8 +1,24 @@
 <template>
   <div class="home">
-    <div v-for="game in games" :key="game.id">
-      {{ game.id }} - {{ game.name }}
-    </div>
+    <table style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Short Description</th>
+        <th>Date Created</th>
+        <th>Created By</th>
+        <th>Host Days</th>
+        <th>Password</th>
+      </tr>
+      <tr v-for="game in joiningGame" :key="game.id">
+        <td>{{ game.name }}</td>
+        <td>{{ game.shortdescription }}</td>
+        <td>{{ game.datecreated }}</td>
+        <td>{{ game.createdby }}</td>
+        <td>{{ game.hostdays }}</td>
+        <td>{{ game.haspassword ? "ps" : "" }}</td>
+      </tr>
+    </table>
+
     <GameList />
   </div>
 </template>
@@ -21,6 +37,11 @@ export default {
       games: []
     };
   },
+  computed: {
+    joiningGame() {
+      return this.games.filter(game => game.statusname == "Joining");
+    }
+  },
   methods: {},
   mounted: function() {
     console.log("home mounted");
@@ -32,6 +53,7 @@ export default {
       })
       .then(jsonData => {
         this.games = jsonData;
+        console.log(jsonData);
       });
   }
 };
