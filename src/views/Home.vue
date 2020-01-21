@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h2>Planets Games</h2>
     <table class="table">
       <tr>
         <th>Name</th>
@@ -19,17 +20,21 @@
         <td>{{ game.datecreated | dateFormat }}</td>
         <td>{{ game.createdby === "none" ? "" : game.createdby }}</td>
         <td>{{ game.hostdays }}</td>
-        <td>{{ game.haspassword ? "ps" : "" }}</td>
+        <td v-if="game.haspassword"><lock-icon /></td>
+        <td v-else></td>
       </tr>
     </table>
   </div>
 </template>
 <script>
 import moment from "moment";
+import LockIcon from "vue-material-design-icons/Lock.vue";
 
 export default {
   name: "home",
-
+  components: {
+    LockIcon
+  },
   data() {
     return {
       games: []
