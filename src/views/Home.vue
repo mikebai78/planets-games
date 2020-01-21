@@ -9,7 +9,11 @@
         <th>Host Days</th>
         <th>Password</th>
       </tr>
-      <tr v-for="game in joiningGames" :key="game.id">
+      <tr
+        v-for="game in joiningGames"
+        :key="game.id"
+        @click="openGame(game.id)"
+      >
         <td>{{ game.name }}</td>
         <td>{{ game.shortdescription }}</td>
         <td>{{ game.datecreated | dateFormat }}</td>
@@ -20,7 +24,6 @@
     </table>
   </div>
 </template>
-
 <script>
 // @ is an alias to /src
 import moment from "moment";
@@ -44,7 +47,11 @@ export default {
       return this.games.filter(game => game.statusname == "Joining");
     }
   },
-  methods: {},
+  methods: {
+    openGame: function(id) {
+      window.open("http://api.planets.nu/games/list?ids=" + id, "_blank");
+    }
+  },
   mounted: function() {
     console.log("home mounted");
     fetch("http://api.planets.nu/games/list", {
@@ -60,3 +67,12 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+tr:hover {
+  background-color: #f5f5f5;
+}
+</style>
