@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <table style="width:100%">
+  <div class="container">
+    <table class="table">
       <tr>
         <th>Name</th>
         <th>Short Description</th>
@@ -25,7 +25,6 @@
   </div>
 </template>
 <script>
-// @ is an alias to /src
 import moment from "moment";
 
 export default {
@@ -69,10 +68,27 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  padding: 15px;
+}
+.table {
+  width: 100%;
+}
+table,
+th,
+td {
+  border: 1px solid #616161;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 10px;
+}
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 tr:hover {
-  background-color: #f5f5f5;
+  background-color: #bae8f2;
+  cursor: pointer;
 }
 </style>
