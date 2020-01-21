@@ -11,6 +11,7 @@
         <th>Password</th>
       </tr>
       <tr
+        class="row"
         v-for="game in joiningGames"
         :key="game.id"
         @click="openGame(game.id)"
@@ -57,7 +58,6 @@ export default {
     }
   },
   mounted: function() {
-    console.log("home mounted");
     fetch("http://api.planets.nu/games/list", {
       method: "get"
     })
@@ -66,7 +66,6 @@ export default {
       })
       .then(jsonData => {
         this.games = jsonData;
-        console.log(jsonData);
       });
   }
 };
@@ -89,10 +88,10 @@ th,
 td {
   padding: 10px;
 }
-tr:nth-child(even) {
+.row:nth-child(even) {
   background-color: #f2f2f2;
 }
-tr:hover {
+.row:hover {
   background-color: #bae8f2;
   cursor: pointer;
 }
